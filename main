@@ -1,0 +1,17 @@
+# main.py
+import ee
+import json
+
+# Authenticate with Earth Engine using the service account key
+with open('key.json', 'r') as f:
+    key_data = json.load(f)
+
+credentials = ee.ServiceAccountCredentials(None, key_file_path='key.json')
+ee.Initialize(credentials)
+
+# Your GEE automation code here
+print("Earth Engine authenticated successfully")
+
+# Example: Print available bands from a Landsat 8 image
+image = ee.Image('LANDSAT/LC08/C02/T1/LC08_044034_20140318')
+print(image.bandNames().getInfo())
